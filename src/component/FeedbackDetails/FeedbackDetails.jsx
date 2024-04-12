@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from "./FeedbackDetails.module.css"
+import rateIMG from "../../../public/img/rate.png"
 
 
 const TYPES_OF_SERVICES = {
@@ -53,9 +54,9 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
 
                 <div className={styles["feedbackDetails__flex-inner"]}>
                     <div className={styles["workDone"]}>Выполненные работы: {open.workDone}.</div>
-                    <div className={styles["support"]}>Взаимодейтсвие с клиентом: {Array(+open.support).fill(0).map( el => <img src="./public/img/rate.png" alt="" />)}</div>
-                    <div className={styles["proffesional"]}>Профессионализм: {Array(+open.proffesional).fill(0).map( el => <img src="./public/img/rate.png" alt="" />)}</div>
-                    <div className={styles["result"]}>Результат: {Array(+open.result).fill(0).map( el => <img src="./public/img/rate.png" alt="" />)}</div>
+                    <div className={styles["support"]}>Взаимодейтсвие с клиентом: {Array(+open.support).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
+                    <div className={styles["proffesional"]}>Профессионализм: {Array(+open.proffesional).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
+                    <div className={styles["result"]}>Результат: {Array(+open.result).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
                 </div>
 
                 <div className={styles["feedbackDetails__flex-inner"]}>

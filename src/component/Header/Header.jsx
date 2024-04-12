@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import styles from './Header.module.css'
-import sale from "../../../public/img/sale.jpg"
+import logoIMG from "../../../public/img/logo.png"
+import tgIMG from "../../../public/img/tg.png"
+import saleIMG from "../../../public/img/sale.jpg"
+import helpIMG from "../../../public/img/help.png"
 
 export default function Header(){
 
@@ -34,25 +37,25 @@ export default function Header(){
 
                 <div className={styles['one_one']}>
 
-                    <img className={styles['logo']} src="./public/img/logo.png" alt="" />
+                    <img className={styles['logo']} src={logoIMG} alt="" />
 
                     <div className={styles['info']}>
                         <a href="tel:88002009460">8-800-200-94-60</a>
                         <a href="mailto:rop@web-canape.ru">rop@web-canape.ru</a>
                     </div>
 
-                    <img className={styles['tg']} src="./public/tg.svg" alt="" />
+                    <img className={styles['tg']} src={tgIMG} alt="" />
 
                 </div>
 
                 <div className={styles['one_two']}>
 
                     <div className={styles['one_two-sale']}>
-                        <img src={sale} alt="" />
+                        <img src={saleIMG} alt="" />
                         <h1>Акции</h1>
                     </div>
                     <div className={styles['one_two-help']}>
-                        <img src="./public/img/help.png" alt="" />
+                        <img src={helpIMG} alt="" />
                         <h1>Служба поддержки</h1>
                     </div>
 

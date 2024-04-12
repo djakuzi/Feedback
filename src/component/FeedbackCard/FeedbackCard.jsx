@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import styles from "./FeedbackCard.module.css"
+import feedbackIMG from "../../../public/img/feedback.png"
+import rateIMG from "../../../public/img/rate.png"
 
 export default function FeedbackCard({id,sort, data, rate, name, link, site, product, enter, open, setFeedbackDetails, setOpen}){
 
@@ -46,7 +48,7 @@ export default function FeedbackCard({id,sort, data, rate, name, link, site, pro
         <div onClick={()=> handleClick()} className={styles["feedbackCard"]}>
 
             <div className={styles['feedbackCard__inner']}> 
-            <img src="./public/img/feedback.png" alt="" />
+            <img src={feedbackIMG} alt="" />
             {data}
             <a href={link + ""} >{txtLink + ""}</a>
             </div>
@@ -55,7 +57,7 @@ export default function FeedbackCard({id,sort, data, rate, name, link, site, pro
             <div className={styles['name']}>{name}</div>
 
             <div className={styles['rate']}>
-                {Array(rate).fill(0).map( el => <img src="./public/img/rate.png" alt="" />)}
+                {Array(rate).fill(0).map( el => <img src={rateIMG} alt="" />)}
             </div>
 
             <p className={styles['enter']}>{enter}</p>
