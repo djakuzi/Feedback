@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import styles from './Header.module.css'
+import sale from "../../../public/img/sale.jpg"
 
 export default function Header(){
 
@@ -47,7 +48,7 @@ export default function Header(){
                 <div className={styles['one_two']}>
 
                     <div className={styles['one_two-sale']}>
-                        <img src="./public/img/sale.jpg" alt="" />
+                        <img src={sale} alt="" />
                         <h1>Акции</h1>
                     </div>
                     <div className={styles['one_two-help']}>
