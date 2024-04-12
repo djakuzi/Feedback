@@ -178,6 +178,7 @@
 }
 
 @media(max-width: 1000px){
+
     body{
         padding: 20px;
     }
@@ -202,3 +203,19 @@
     }
 
 }
+
+@media(max-width: 560px){
+
+    .info{
+        display: none;
+    }
+
+    .tg{
+        display: none;
+    }
+
+    .one{
+        margin-bottom: 30px;
+    }
+}
+

@@ -5,19 +5,19 @@ ul {
 
 
 .select {
+    width: 25%;
     -webkit-user-select: none;
     -khtml-user-select: none;
-    display: flex;
-    align-content: flex-start;
-    flex-direction: column;
-    justify-content: center;
+
 }
 
 
 
 .select__button {
+    display: flex;
     text-transform: uppercase;
     border: none;
+    align-items: center;
     justify-content: center;
     font-size: 17px;
     width: 100%;
@@ -34,7 +34,7 @@ ul {
     content: url(../../../public/select.svg);
     position: absolute;
     transform: rotate(90deg);
-    translate: 90px;
+    translate: 85px;
     transition: all .5s ease;
    
 }
@@ -50,6 +50,7 @@ ul {
 }
 
 .select__ul {
+    z-index: 10;
     display: none;
     width: 100%;
     border-radius: 50px;
@@ -124,4 +125,17 @@ ul {
 .select__ul li:last-child {
     margin-bottom: 10px;
     transition: all .3s ease-in-out;
+}
+
+
+@media (max-width: 830px) {
+    .select {
+        min-width: 230px;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .select__button{
+        font-size: 15px;
+    }
 }

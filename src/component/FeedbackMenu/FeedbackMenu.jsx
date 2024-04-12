@@ -4,7 +4,7 @@ import styles from "./FeedbackMenu.module.css"
 export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpen}){
 
     return (
-        <div className={styles['FeedbackMenu']}>
+        <div className={styles['feedbackMenu']}>
             {feedback.filter( (el) => ( filter == "all" || filter == "rate") ? true : el.sort == filter)
             .sort((a,b)=> ( filter == "rate") ? (b.rate - a.rate): null)
             .map( (el) => <FeedbackCard 

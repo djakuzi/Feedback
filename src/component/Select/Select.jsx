@@ -3,7 +3,7 @@ import cn from 'classnames'
 import {useRef, useState} from 'react'
 
 
-export default function Select({setFilter}){
+export default function Select({setFilter,setOpen}){
 
     const [isValid, setIsValid] = useState(false) // open or cancel CUSTOM SELECT
     const [valueSelect, setValueSelect] = useState('ВСЕ ОТЗЫВЫ') // set value CUSTOM SELECT
@@ -25,13 +25,14 @@ export default function Select({setFilter}){
         setCoordSelect({
             width: getComputedStyle(select.current).width,
             position: "absolute",
-            top: cdBtn.top + window.pageYOffset + "px",
+            top: cdBtn.top + window.pageYOffset + but.offsetHeight + "px" ,
             left: cdSl.left + window.pageXOffset +  "px"
         })
   
     }
 
     const sort = (e) => {
+        setOpen(false)
         setFilter(e.target.dataset.sort)
         setIsValid(!isValid)
         setValueSelect(e.target.textContent)
@@ -39,21 +40,21 @@ export default function Select({setFilter}){
     
 
     return(
-        <div ref={select} style={ isValid ? coordSelect : {}}  className={styles["select"]}>
+        <div ref={select}   className={styles["select"]}>
             <div ref={but}  onClick={(e)=>goBut(e)} className={cn(styles['select__button'], {
             [styles['openButton']]: isValid,
           })}>{valueSelect}</div>
 
-            <ul  className={cn(styles['select__ul'], {
+            <ul  style={ isValid ? coordSelect : {}} className={cn(styles['select__ul'], {
             [styles['openUl']]: isValid,
           })}>
-                <li onPointerDown={(e)=> sort(e)} data-sort="all">все отзывы</li>
-                <li onPointerDown={(e)=> sort(e)} data-sort="rate">по рейтингу</li>
-                <li onPointerDown={(e)=> sort(e)}  data-sort="site">разработка</li>
-                <li onPointerDown={(e)=> sort(e)}  data-sort="promotion">продвижение</li>
-                <li onPointerDown={(e)=> sort(e)}  data-sort="ad">реклама</li>
-                <li onPointerDown={(e)=> sort(e)}  data-sort="help">поддержка</li>
-                <li onPointerDown={(e)=> sort(e)}  data-sort="market">маркетплейсы</li>
+                <li onClick={(e)=> sort(e)} data-sort="all">все отзывы</li>
+                <li onClick={(e)=> sort(e)} data-sort="rate">по рейтингу</li>
+                <li onClick={(e)=> sort(e)}  data-sort="site">разработка</li>
+                <li onClick={(e)=> sort(e)}  data-sort="promotion">продвижение</li>
+                <li onClick={(e)=> sort(e)}  data-sort="ad">реклама</li>
+                <li onClick={(e)=> sort(e)}  data-sort="help">поддержка</li>
+                <li onClick={(e)=> sort(e)}  data-sort="market">маркетплейсы</li>
             </ul>
         </div>
     )

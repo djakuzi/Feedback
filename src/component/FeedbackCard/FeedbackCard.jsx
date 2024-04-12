@@ -59,7 +59,8 @@ export default function FeedbackCard({id,sort, data, rate, name, link, site, pro
             </div>
 
             <p className={styles['enter']}>{enter}</p>
-            
+
+            <div className={styles['shadow']}></div>
         </div>
     )
 }

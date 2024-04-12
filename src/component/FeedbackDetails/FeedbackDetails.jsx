@@ -2,7 +2,15 @@ import { useEffect, useState } from "react"
 import styles from "./FeedbackDetails.module.css"
 
 
-export default function FeedbackDetails({id,sort, data, rate, name, link, site, product, enter, open}){
+const TYPES_OF_SERVICES = {
+    site: "РАЗРАБОТКУ САЙТА",
+    ad: "РЕКЛАМУ",
+    promotion: "ПРОДВИЖЕНИЕ",
+    help: "ПОДДЕРЖКУ",
+    market: "ПОДДЕРЖКУ МАРКЕТПЛЕЙСОВ"
+}
+
+export default function FeedbackDetails({id,sort, data, rate, name, link, site, product, enter, open, setOpen}){
 
     const [txtLink, setTxtLink] = useState()
     
@@ -35,8 +43,10 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
 
         <div className={styles["feedbackDetails"]}>
 
-           <div>
-             <div className={styles["product"]}>{product}</div>
+        
+           <div className={styles["feedbackDetails__box"]}>
+             <div className={styles["product"]}>ЗАКАЗАТЬ: {product}</div>
+             <div className={styles["feedbackDetails__box-inner"]}><div className={styles["feedbackDetails__close"]} onClick={ () => setOpen(false)}></div></div>
            </div>
 
             <div className={styles["feedbackDetails__flex"]}>

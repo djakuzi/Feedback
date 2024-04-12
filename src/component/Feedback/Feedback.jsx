@@ -37,14 +37,15 @@ export default function Feedback(){
         <div className={styles['feedback']}>
 
             <div className={styles['info']}>
-                <div>
+
+                <div className={styles['statistic']}>
                     <h1>97%</h1>
                     <h1>довольных<br/>клиентов</h1>
                 </div>
 
-                   <Select setFilter={setFilter}/>
+                   <Select setOpen={setOpen} setFilter={setFilter}/>
 
-                <div >
+                <div>
                     <button className={styles['button']}>Оставить отзыв</button>
                     <button className={styles['button']}>Написать директору</button>
                 </div>
@@ -52,8 +53,7 @@ export default function Feedback(){
             </div>
 
             { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} setOpen={setOpen}/> }
-            { open && <FeedbackDetails {...feedbackDetails}/>}
-
+            { open && <FeedbackDetails {...feedbackDetails} setOpen={setOpen}/>}
 
         </div>
     )

@@ -1,6 +1,7 @@
 {
   "name": "webcanape",
   "private": true,
+  "homepage": "https://djakuzi.github.io/Feedback/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,11 +10,15 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server -w server/data.json -p 3003"
+    "server": "json-server -w server/data.json -p 3003",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "classnames": "^2.5.1",
     "concurrently": "^8.2.2",
+    "deploy": "^1.0.3",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

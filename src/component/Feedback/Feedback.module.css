@@ -8,34 +8,31 @@
 .info{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 40px;
 }
 
-.info div{
+.statistic{
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.info div:nth-child(2) {
-    width: 25%;
-}
-
 
 .info div:nth-child(3){
-    width: 30%;
+    /* width: 30%; */
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.info h1{
+.statistic h1{
     font-size: 100px;
     font-weight: bolder;
 }
 
-.info h1:last-child{
+.statistic h1:last-child{
     align-self: center;
     font-size: 29px;
     font-weight: bold;
@@ -68,4 +65,43 @@
 .button:nth-child(2):hover{
     background: none;
     border: 1px solid rgb(255, 200, 3);
+}
+
+@media(max-width: 1000px) {
+    
+    .statistic h1 {
+            font-size: 80px;
+            font-weight: bolder;
+    }
+    
+    .statistic h1:last-child {
+        align-self: center;
+        font-size: 23px;
+        font-weight: bold;
+
+    }
+}
+
+@media(max-width:830px) {
+
+    .statistic{
+        display: none;
+    }
+
+
+}
+
+@media(max-width: 560px){
+    .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        margin-bottom: 40px;
+        gap: 20px;
+    }
+
+    .info div:nth-child(3){
+        width: 100%;
+    }
 }
