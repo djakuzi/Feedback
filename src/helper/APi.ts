@@ -1,0 +1,1 @@
+export const PREFIX: string = "http://localhost:3003";

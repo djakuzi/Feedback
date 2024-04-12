@@ -1,0 +1,10 @@
+
+.FeedbackMenu{
+    border-top: 1px solid #989898;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 300px;
+    gap: 30px;
+    overflow: scroll;
+    height: 660px;
+}

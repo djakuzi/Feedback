@@ -1,0 +1,127 @@
+ul {
+    list-style: none;
+}
+
+
+
+.select {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.select__button {
+    text-transform: uppercase;
+    border: none;
+    justify-content: center;
+    font-size: 17px;
+    width: 100%;
+    height: 50px;
+    color: rgb(34, 34, 34);
+    font-weight: bolder;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(242, 241, 241);
+    transition: all .15s ease;
+}
+
+.select__button::after {
+    content: url(../../../public/select.svg);
+    position: absolute;
+    transform: rotate(90deg);
+    translate: 90px;
+    transition: all .5s ease;
+   
+}
+
+.openButton::after {
+    transform: rotate(0deg);
+}
+
+
+.select__button:hover {
+    border: 1.5px solid rgb(255, 200, 3);
+    color: rgb(34, 34, 34);
+}
+
+.select__ul {
+    display: none;
+    width: 100%;
+    border-radius: 50px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background-color: rgb(242, 241, 241);
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-family: Montserrat;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 20px;
+    animation: 1s cancelSL forwards;
+    /* transition: all 1s ease; */
+    
+}
+
+@keyframes openSL {
+
+
+    from{
+        height: 0;
+    }
+
+    to {
+        height: 300px;
+    }
+}
+
+/* @keyframes cancelSL {
+
+
+    from {
+        display: block;
+        height: 300px;
+    }
+
+    to {
+        height: 0;
+        display: none;
+    }
+} */
+
+.openUl{
+    display: block;
+    animation: 1s openSL forwards;
+    /* opacity: 1; */
+    
+}
+
+.select__ul li {
+    border-bottom: 1px solid #989898;
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 8000;
+    transition: all .3s ease-in-out;
+  
+}
+
+
+.select__ul li:hover {
+    background-color: rgba(255, 191, 0, 0.477);
+    color: rgb(60, 46, 46);
+    cursor: pointer;
+}
+
+.select__ul li:last-child {
+    margin-bottom: 10px;
+    transition: all .3s ease-in-out;
+}

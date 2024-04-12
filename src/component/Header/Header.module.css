@@ -1,0 +1,204 @@
+.burger{
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-image: url(../../../public/img/burger.png);
+}
+
+.header{
+    background-color: rgb(48, 46, 46);
+    padding: 0 calc(50vw - 600px);
+    height: 60px;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.header_block1{
+    display: flex;
+    font-size: 15px;
+    gap: 30px;
+    font-weight: bolder;
+}
+
+.header_block1 h1{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header_block1 h1 {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header_block1 h1:hover {
+    color: rgb(255, 208, 0);
+}
+
+.header_block2{
+    cursor: pointer;
+    display: flex;
+    font-size: 15px;
+    gap: 25px;
+    font-style: inherit;
+    font-family: initial;
+}
+
+.header_block2 h1:hover {
+    color: rgb(255, 208, 0);
+}
+
+
+
+/* one */
+
+.one{
+    padding: 0 calc(50vw - 600px);
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.one_one{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.logo{
+    display: block;
+    width: 200px;
+    cursor: pointer;
+}
+
+.info{
+   min-width: 170px;
+   display: flex;
+    flex-direction: column;
+}
+
+.info a:first-child{
+    font-size: 20px;
+}
+
+.info a{
+    text-decoration: none;
+    color: black;
+}
+
+.tg{
+    border-radius: 60px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+
+.one_two{
+    width: 45%;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    font-size: 16px;
+}
+
+
+
+.one_two-sale{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: rgb(255, 0, 0);
+}
+
+.one_two-sale img {
+    display: block;
+    width: 23px;
+    height: 23px;
+}
+
+
+.one_two-help{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.one_two-help img{
+    display: block;
+    width: 25px;
+    height: 30px;
+}
+
+.button{
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    width: 40%;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(255, 3, 3);
+}
+
+.button:hover{
+    background-color: rgb(195, 9, 9);
+}
+
+/* feeedback adrdres */
+
+
+.two{
+    padding: 0 calc(50vw - 600px);
+    margin-bottom: 50px;
+}
+
+.feedback{
+    font-size: 37px;
+    margin: 0;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.addres{
+    font-size: 11px;
+    color:gray
+}
+
+.addres_span{
+    color: rgb(22, 21, 21);
+}
+
+@media(max-width: 1000px){
+    body{
+        padding: 20px;
+    }
+
+    .burger{
+        display: block;
+    }
+
+    .header {
+           display: none;
+    }
+
+    /* .one_one{
+        flex-direction: row-reverse;
+    } */
+    .one_two{
+        display: none;
+    }
+
+    .logo{
+        order: 2;
+    }
+
+}

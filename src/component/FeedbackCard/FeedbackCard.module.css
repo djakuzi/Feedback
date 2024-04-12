@@ -1,0 +1,54 @@
+
+
+.feedbackCard{
+    cursor: pointer;
+    color: #989898;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 25px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    /* background-color:aqua; */
+}
+
+.feedbackCard:hover{
+    color: black;
+    transform: scale(1.01);
+}
+
+.feedbackCard:hover{
+
+}
+
+.feedbackCard__inner{ 
+    display: flex;
+    gap: 15px;
+    color: #989898;
+    font-size: 14px;
+    
+}
+
+.feedbackCard__inner a{
+    color: #989898;
+    text-decoration: underline;
+}
+
+.product{
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5;
+}
+
+.name{
+    font-size: 14px;
+}
+
+.feedbackCard__inner img{
+    width: 15px;
+    height: 15px;
+}
+
+.enter{
+}

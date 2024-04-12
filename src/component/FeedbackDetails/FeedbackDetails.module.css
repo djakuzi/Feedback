@@ -1,0 +1,133 @@
+
+.feedbackDetails{
+    border: 1px solid #989898;
+    border-radius: 50px;
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.product{
+    text-align: center;
+}
+
+.feedbackDetails__flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.feedbackDetails__flex-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.workDone {
+    padding-left: 15px;
+}
+
+.support {
+    padding-left: 15px;
+}
+
+.proffesional {
+    padding-left: 15px;
+}
+
+.result {
+    padding-left: 15px;
+}
+
+.data{
+    /* background-color: #9898988e;
+    border-radius: 50px; */
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.name{
+    /* background-color: #9898988e;
+    border-radius: 50px; */
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+.link{
+    cursor: pointer;
+    /* background-color: #9898988e;
+    border-radius: 50px; */
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.feedbackDetails__plus-minus{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.plus{
+    padding-left: 15px;
+}
+
+.plus span {
+    background-color: rgb(126, 94, 255);
+    color: white;
+    border-radius: 50px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.minus{
+    padding-left: 15px;
+}
+
+.minus span{
+    color: white;
+    background-color: rgb(255, 94, 94);
+    border-radius: 50px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.enter{
+    background-color: rgb(242, 241, 241);
+    padding: 15px;
+    /* padding-left: 15px; */
+    border-radius: 50px;
+    line-height: 1.5;
+    
+}
+
+.enter span{
+    background-color: rgb(255, 220, 94);
+    border-radius: 50px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.recommendations {
+    overflow: hidden;
+    background-color: rgb(242, 241, 241);
+    padding: 15px;
+    /* padding-left: 15px; */
+    border-radius: 50px;
+    line-height: 1.6;
+    
+}
+
+.recommendations span {
+    background-color: rgb(255, 220, 94);
+    border-radius: 50px;
+    padding: 5px;
+    margin-right: 5px;
+}
