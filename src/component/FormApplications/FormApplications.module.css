@@ -1,0 +1,242 @@
+
+.formApplications{
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    /* padding: 20px; */
+    background-color: rgba(55, 55, 55, 0.752);
+}
+
+
+.formApplications__box{
+    position: relative;
+    max-width: 900px;
+    max-height: 700px;
+    padding: 60px 30px;
+    border: 20px solid rgb(255, 207, 85);
+    background-color: rgb(248, 248, 248);
+}
+
+.form_close {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: calc( 100% - 40px);
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("../../../public/img/close.png");
+    transition: all .2s ease;
+}
+
+.form_close:hover{
+    transform: scale(.9);
+}
+
+.form{
+
+    
+}
+
+.close{
+    display: none;
+}
+
+
+.form__inner{
+    display: flex;
+    gap: 15%;
+    margin-bottom: 60px;
+}
+
+.form__inner-txt{
+    font-size: 18px;
+    max-width: 340px;
+}
+
+.form__inner-txt span{
+    font-weight: bold;
+    font-size: 28px;
+}
+
+
+.form__inner-choice{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-radio{
+   display: flex;
+
+}
+
+.custom_input{
+    position: absolute;
+    opacity: .1;
+    z-index: -1;
+    width: 16px;
+    height: 16px;
+}
+
+
+.custom_input+label{
+    position: relative;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+.custom_input+label::before {
+    cursor: pointer;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #a1a1a1;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.custom_input:checked+label::before{
+    border: 2px solid red;
+}
+
+.custom_input:checked+label::after {
+   position: absolute;
+   top: 7px;
+   left: 7px;
+    cursor: pointer;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+
+.form__enter{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 50px;
+}
+
+.form__enter input{
+    padding: 20px;
+    height: 50px;
+    border: 1px solid rgb(191, 191, 191);
+}
+
+.form__enter input::placeholder{
+    font-size: 16px;
+}
+
+.form__enter textarea{
+    width: 300%;
+    padding: 20px;
+    border: 1px solid rgb(191, 191, 191);
+}
+
+.form__enter textarea::placeholder{
+    font-size: 14px;
+}
+
+
+.form__submit{
+    display: flex;
+}
+
+.form__submit-txt{
+    max-width: 430px;
+    font-size: 13px;
+}
+
+.form__submit-txt a{
+    color: rgb(255, 72, 72);
+}
+
+.form__submit-button{
+    cursor: pointer;
+    min-width: 170px;
+    height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(255, 65, 65);
+    transition: all .2s ease;
+}
+
+.form__submit-button:hover{
+    background-color: rgb(224, 54, 54);
+}
+
+@media(max-width: 725px){
+
+    .formApplications {
+        
+        padding: 20px;
+        display: block;
+    }
+
+    .formApplications__box{
+        overflow: scroll;
+        width: 100%;
+        max-height: calc(100vh - 40px);
+        border: 6px solid rgb(255, 207, 85);
+    }
+
+    .form__inner{
+        flex-direction: column;
+        gap: 0%;
+    }
+
+    .form__inner-txt span{
+        font-size: 21px;
+    }
+
+    .form__inner-txt{
+        font-size: 15px;
+        max-width: 340px;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .custom_input+label{
+        font-size: 14px;
+    }
+
+    .form__enter{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__enter textarea{
+        width: auto;
+        max-height: 150px;
+    }
+
+    .form__submit{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form__submit-button{
+        align-self: center;
+        max-width: 140px;
+    }
+}
+

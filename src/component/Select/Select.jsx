@@ -3,7 +3,7 @@ import cn from 'classnames'
 import {useRef, useState} from 'react'
 
 
-export default function Select({setFilter,setOpen}){
+export default function Select({setFilter,setOpen, setFormApplications}){
 
     const [isValid, setIsValid] = useState(false) // open or cancel CUSTOM SELECT
     const [valueSelect, setValueSelect] = useState('ВСЕ ОТЗЫВЫ') // set value CUSTOM SELECT

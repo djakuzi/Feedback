@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react'
 import { PREFIX } from "../../helper/APi"
 import data from '../../data/data'
 import FeedbackDetails from "../FeedbackDetails/FeedbackDetails"
+import FormApplications from "../FormApplications/FormApplications"
 
 
 export default function Feedback(){
@@ -12,7 +13,8 @@ export default function Feedback(){
     const [open, setOpen] = useState(false) // чтобы открыть более подробную инфу о отзые при клике 
     const [filter, setFilter] = useState("all") // filter for sorting feedback
     const [feedback, setFeedback] = useState([]) 
-    const [feedbackDetails, setFeedbackDetails] = useState(0) //данные для более открытия более подробного отзыва
+    const [feedbackDetails, setFeedbackDetails] = useState(0) //данные для открытия более подробного отзыва
+    const [formApplications, setFormApplications] = useState(false) // открыть форму обратной связи для заказа услуги
 
     const getFeedback = async() => {
 
@@ -43,7 +45,7 @@ export default function Feedback(){
                     <h1>довольных<br/>клиентов</h1>
                 </div>
 
-                   <Select setOpen={setOpen} setFilter={setFilter}/>
+                   <Select setOpen={setOpen} setFilter={setFilter} setFormApplications={setFormApplications}/>
 
                 <div>
                     <button className={styles['button']}>Оставить отзыв</button>
@@ -52,8 +54,11 @@ export default function Feedback(){
               
             </div>
 
-            { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} setOpen={setOpen}/> }
-            { open && <FeedbackDetails {...feedbackDetails} setOpen={setOpen}/>}
+            <div className={styles['feedback_window']}>
+                { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} setOpen={setOpen}/> }
+                { open && <FeedbackDetails {...feedbackDetails} setOpen={setOpen} setFormApplications={setFormApplications}/>}
+                { formApplications && <FormApplications sort={feedbackDetails.sort} setFormApplications={setFormApplications}/>}
+            </div>
 
         </div>
     )

@@ -9,9 +9,9 @@ const TYPES_OF_SERVICES = {
     promotion: "ПРОДВИЖЕНИЕ",
     help: "ПОДДЕРЖКУ",
     market: "ПОДДЕРЖКУ МАРКЕТПЛЕЙСОВ"
-}
+} //  сделан, чтобы поменять правильность написания услуги на кнопке ЗАКАЗАТЬ. Способ опередедения услуги идет через подставления свойства sort.
 
-export default function FeedbackDetails({id,sort, data, rate, name, link, site, product, enter, open, setOpen}){
+export default function FeedbackDetails({id,sort, data, rate, name, link, site, product, enter, open, setOpen, setFormApplications,formApplications}){
 
     const [txtLink, setTxtLink] = useState()
     
@@ -37,16 +37,18 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
         setTxtLink(txt)
     }
 
+    function handleFormApplications(){
+        setFormApplications(true)
+    }
 
     useEffect( ()=> changeTxt(link), [])
 
     return (
 
         <div className={styles["feedbackDetails"]}>
-
         
-           <div className={styles["feedbackDetails__box"]}>
-             <div className={styles["product"]}>ЗАКАЗАТЬ: {product}</div>
+        <div className={styles["feedbackDetails__box"]}>
+             <div onClick={() => handleFormApplications()} className={styles["product"]}>ЗАКАЗАТЬ: {TYPES_OF_SERVICES[sort]}</div>
              <div className={styles["feedbackDetails__box-inner"]}><div className={styles["feedbackDetails__close"]} onClick={ () => setOpen(false)}></div></div>
            </div>
 
@@ -79,7 +81,7 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
                  {open.recommendations}.
                  {/* {open.recommendations[0]?.toUpperCase() + open.recommendations.slice(1)} */}
              </div>
-            
+             
 
         </div>
     )
