@@ -50,6 +50,7 @@ ul {
 }
 
 .select__ul {
+    margin-top: 10px;
     z-index: 10;
     display: none;
     width: 100%;

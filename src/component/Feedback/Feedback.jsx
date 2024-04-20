@@ -1,7 +1,7 @@
 import FeedbackMenu from "../FeedbackMenu/FeedbackMenu"
 import Select from "../Select/Select"
 import styles from "./Feedback.module.css"
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import { PREFIX } from "../../helper/APi"
 import data from '../../data/data'
 import FeedbackDetails from "../FeedbackDetails/FeedbackDetails"
@@ -15,6 +15,18 @@ export default function Feedback(){
     const [feedback, setFeedback] = useState([]) 
     const [feedbackDetails, setFeedbackDetails] = useState(0) //данные для открытия более подробного отзыва
     const [formApplications, setFormApplications] = useState(false) // открыть форму обратной связи для заказа услуги
+    const [saveHeight, setSaveHeight] = useState(null)
+    const [saveScrollFeedback, setSaveScrollFeedback] = useState(null) // сохраняет размер скрола когда через карточку отзыва открывается более подробная инфа о отзыве6 чтобы при закрывание этой подробной инфорации пользователь возрващался к тому отзыву, на который нажимал автоматически
+
+
+    const refFeedbackInfo = useRef()
+
+    const hooks = {
+        setOpen,
+        setFeedbackDetails,
+        setSaveHeight,
+        setSaveScrollFeedback
+    }
 
     const getFeedback = async() => {
 
@@ -30,7 +42,12 @@ export default function Feedback(){
         }
 
     }
-  
+
+    useEffect( () =>{
+        if (feedbackDetails !== 0) refFeedbackInfo.current.scrollIntoView({ block: "start", behavior: "smooth" }) 
+    },[feedbackDetails])
+
+    
 
     useEffect( ()=> {getFeedback()},[])
     // console.log(feedbackDetails)
@@ -38,14 +55,14 @@ export default function Feedback(){
     return (
         <div className={styles['feedback']}>
 
-            <div className={styles['info']}>
+            <div ref={refFeedbackInfo} className={styles['info']}>
 
                 <div className={styles['statistic']}>
                     <h1>97%</h1>
                     <h1>довольных<br/>клиентов</h1>
                 </div>
 
-                   <Select setOpen={setOpen} setFilter={setFilter} setFormApplications={setFormApplications}/>
+                   <Select setOpen={setOpen} setFilter={setFilter} setSaveHeight={setSaveHeight} setSaveScrollFeedback={setSaveScrollFeedback} />
 
                 <div>
                     <button className={styles['button']}>Оставить отзыв</button>
@@ -55,7 +72,7 @@ export default function Feedback(){
             </div>
 
             <div className={styles['feedback_window']}>
-                { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} setOpen={setOpen}/> }
+                { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} saveHeight={saveHeight} saveScrollFeedback={saveScrollFeedback} hooks={hooks} /> }
                 { open && <FeedbackDetails {...feedbackDetails} setOpen={setOpen} setFormApplications={setFormApplications}/>}
                 { formApplications && <FormApplications sort={feedbackDetails.sort} setFormApplications={setFormApplications}/>}
             </div>

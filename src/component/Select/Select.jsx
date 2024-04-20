@@ -3,7 +3,7 @@ import cn from 'classnames'
 import {useRef, useState} from 'react'
 
 
-export default function Select({setFilter,setOpen, setFormApplications}){
+export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFeedback}){
 
     const [isValid, setIsValid] = useState(false) // open or cancel CUSTOM SELECT
     const [valueSelect, setValueSelect] = useState('ВСЕ ОТЗЫВЫ') // set value CUSTOM SELECT
@@ -36,6 +36,8 @@ export default function Select({setFilter,setOpen, setFormApplications}){
         setFilter(e.target.dataset.sort)
         setIsValid(!isValid)
         setValueSelect(e.target.textContent)
+        setSaveHeight(null)
+        setSaveScrollFeedback(null)
     }
     
 
@@ -45,7 +47,7 @@ export default function Select({setFilter,setOpen, setFormApplications}){
             [styles['openButton']]: isValid,
           })}>{valueSelect}</div>
 
-            <ul  style={ isValid ? coordSelect : {}} className={cn(styles['select__ul'], {
+            <ul style={ isValid ? coordSelect : {}} className={cn(styles['select__ul'], {
             [styles['openUl']]: isValid,
           })}>
                 <li onClick={(e)=> sort(e)} data-sort="all">все отзывы</li>

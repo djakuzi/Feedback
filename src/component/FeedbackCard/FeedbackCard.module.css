@@ -11,16 +11,26 @@
     overflow: hidden;
     padding: 25px;
     margin-bottom: 30px;
-    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translate(-150px);
+    /* transform: scale(.8); */
+    transition: color 0.3s ease, opacity .8s ease, transform .8s ease;
+    will-change: transform;
+    /* transition: ; */
     /* background-color:aqua; */
 }
 
 .feedbackCard:hover{
     color: black;
+    
 }
 
-.feedbackCard:hover{
+/* if card inner WINDOW */
 
+.active{ 
+    opacity: 1;
+    /* transform: scale(1); */
+    transform: translateY(0px);
 }
 
 .feedbackCard__inner{ 

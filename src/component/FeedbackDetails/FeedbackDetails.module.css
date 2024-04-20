@@ -75,13 +75,22 @@
     gap: 30px;
 }
 
+.feedbackDetails__flex-inner:first-child > div div{
+    display: inline-block;
+}
+
 .workDone {
     padding-left: 15px;
 }
 
 .support {
+    
     padding-left: 15px;
 }
+
+/* .support div{
+    display: inline-block;
+} */
 
 .proffesional {
     padding-left: 15px;

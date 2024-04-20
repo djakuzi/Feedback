@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import styles from "./FeedbackDetails.module.css"
 import rateIMG from "../../../public/img/rate.png"
 
@@ -11,10 +11,20 @@ const TYPES_OF_SERVICES = {
     market: "ПОДДЕРЖКУ МАРКЕТПЛЕЙСОВ"
 } //  сделан, чтобы поменять правильность написания услуги на кнопке ЗАКАЗАТЬ. Способ опередедения услуги идет через подставления свойства sort.
 
-export default function FeedbackDetails({id,sort, data, rate, name, link, site, product, enter, open, setOpen, setFormApplications,formApplications}){
+export default function FeedbackDetails({sort, data, name, link, enter, open, setOpen, setFormApplications}){
 
     const [txtLink, setTxtLink] = useState()
+    // const refFeedbackDetails = useRef()
+
     
+
+    useEffect( () => {
+        document.body.style.overflow = 'visible' // потому что когда мы переходим с карточки на подробную информацию, то при нахождении курсора на feedbackMEnu свыше 1300 px страница не прокручивается! Поэтому мы рендрениге мы обновляем overflow 
+
+        changeTxt(link)
+    }, [])
+
+ //убирает http// or https// в ссылке на сайт, чтобы сделать более красивый текст ссылки
     function changeTxt(link){
         let count = 0
         let txt = ''
@@ -41,7 +51,7 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
         setFormApplications(true)
     }
 
-    useEffect( ()=> changeTxt(link), [])
+    
 
     return (
 
@@ -55,16 +65,16 @@ export default function FeedbackDetails({id,sort, data, rate, name, link, site, 
             <div className={styles["feedbackDetails__flex"]}>
 
                 <div className={styles["feedbackDetails__flex-inner"]}>
-                    <div className={styles["workDone"]}>Выполненные работы: {open.workDone}.</div>
-                    <div className={styles["support"]}>Взаимодейтсвие с клиентом: {Array(+open.support).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
-                    <div className={styles["proffesional"]}>Профессионализм: {Array(+open.proffesional).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
-                    <div className={styles["result"]}>Результат: {Array(+open.result).fill(0).map( el => <img src={rateIMG} alt="" />)}</div>
+                    <div className={styles["workDone"]} >Выполненные работы: {open.workDone}.</div>
+                    <div className={styles["support"]}  >Взаимодейтсвие с клиентом: <div>{Array(+open.support).fill(0).map( (el, i) => <img key={i} src={rateIMG} alt="" />)} </div> </div>
+                    <div className={styles["proffesional"]}>Профессионализм: <div> {Array(+open.proffesional).fill(0).map( (el, i) => <img key={i} src={rateIMG} alt="" />)} </div> </div>
+                    <div className={styles["result"]}>Результат: <div> {Array(+open.result).fill(0).map( (el, i) => <img key={i} src={rateIMG} alt="" />)} </div> </div>
                 </div>
 
                 <div className={styles["feedbackDetails__flex-inner"]}>
-                    <div className={styles["data"]}>{data}</div>
-                    <div className={styles["name"]}>{name}</div>
-                    <a className={styles["link"]} href={link + ""} >{txtLink + ""}</a>
+                    <div className={styles["data"]}>{data != '' ? data : 'нет'}</div>
+                    <div className={styles["name"]}>{name != '' ? name : 'нет'}</div>
+                    <a className={styles["link"]} href={ link != '' ? link : "#"} target="_blank" >{txtLink != '' ? txtLink: 'нет'}</a>
                 </div>
 
             </div>

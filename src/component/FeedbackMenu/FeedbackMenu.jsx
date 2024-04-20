@@ -1,96 +1,53 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useLayoutEffect } from "react"
 import FeedbackCard from "../FeedbackCard/FeedbackCard"
 import styles from "./FeedbackMenu.module.css"
+import { useInView } from 'react-intersection-observer';
 
-function calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu, setOpenMore){
 
-     if(bodyWidth <= 1000 && bodyWidth >= 901){
-
-            let heightRows = 330
-            let min = 660
-            let max = Math.ceil(quantityCards/3) * heightRows
-            console.log(feedbackMenu.offsetHeight)
-            
-            feedbackMenu.style.height = feedbackMenu.offsetHeight + min + 'px'
-
-            if(feedbackMenu.offsetHeight > max) {
-                feedbackMenu.style.height = max + 'px'
-                setOpenMore(false)
-            }
-
-            if (feedbackMenu.offsetHeight < max){
-                setOpenMore(true)
-            }
-
-        }
-
-    if(bodyWidth <= 900 && bodyWidth >= 561){
-
-        let heightRows = 250
-        let min = 750
-        let max = Math.ceil(quantityCards/2) * heightRows
-        
-        feedbackMenu.style.height = feedbackMenu.offsetHeight + min + 'px'
-
-        if(feedbackMenu.offsetHeight > max) {
-            feedbackMenu.style.height = max + 'px'
-            setOpenMore(false)
-        }
-
-        if (feedbackMenu.offsetHeight < max){
-            setOpenMore(true)
-        }
-    }
-
-    if(bodyWidth <= 560){
-
-        let heightRows = 230
-        let min = 690
-        let max = Math.ceil(quantityCards/1) * heightRows
-        console.log(feedbackMenu.offsetHeight)
-        
-        feedbackMenu.style.height = feedbackMenu.offsetHeight + min + 'px'
-
-        if(feedbackMenu.offsetHeight > max) {
-            feedbackMenu.style.height = max + 'px'
-            setOpenMore(false)
-        }
-
-        if (feedbackMenu.offsetHeight < max){
-            setOpenMore(true)
-        }
-    }
-}
-
-export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpen}){
+export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFeedback, hooks}){
 
     const [openMore, setOpenMore] = useState(false)
 
     const feedbackMenu = useRef()
-    
+   
 
     useEffect(() =>{
 
-        if (document.body.offsetWidth <= 1000 ) setOpenMore(true)
+        changeResizeScrollFeedback(feedbackMenu.current,saveScrollFeedback)
+
+        if (saveScrollFeedback == null ) deleteSaveScrollFeedback(hooks.setSaveScrollFeedback)
+        
+        if (saveHeight) feedbackMenu.current.style.height = saveHeight + 'px'
+
+        if (document.body.offsetWidth <= 1300 ) setOpenMore(true)
         
         feedbackMenu.current.addEventListener('mouseenter', ()=> {
-            if (document.body.offsetWidth > 1000 ) document.body.style.overflow = 'hidden'
+            if (document.body.offsetWidth > 1300 ) document.body.style.overflow = 'hidden'
         })
+
         feedbackMenu.current.addEventListener('mouseleave', ()=> {
-            if (document.body.offsetWidth > 1000 ) document.body.style.overflow = 'visible'
+             document.body.style.overflow = 'visible'
         })
+
+        window.addEventListener('resize', function() {
+
+            const bodyWidth = document.body.offsetWidth
+
+            changeStandartHeightFeedbackMenu(bodyWidth, feedbackMenu.current, setOpenMore, hooks.setSaveHeight)
+        })
+
     }, [])
 
-    window.addEventListener('resize', function() {
-            if (document.body.offsetWidth <= 1000 ) {
-                setOpenMore(true)
-            }
-            if (document.body.offsetWidth > 1000) {
-                setOpenMore(false)
-                feedbackMenu.current.style.height = 660 + 'px'// когда экран больше 1000 px то меню отзывов overflow = hidden, поэтому возвращаем до стандартных размеров height
-            }
-    })
+    
+    useEffect( ()=>{
+        // feedbackMenu.current.scrollTop = saveScrollFeedback
+        changeResizeScrollFeedback(feedbackMenu.current,saveScrollFeedback)
+        deleteSaveScrollFeedback(hooks.setSaveScrollFeedback)
+        const bodyWidth = document.body.offsetWidth
+        if(saveHeight == null) changeStandartHeightFeedbackMenu(bodyWidth, feedbackMenu.current, setOpenMore, hooks.setSaveHeight)
+    },[filter])
 
+    
 
     const handlerSeeMore = () =>{
 
@@ -98,10 +55,10 @@ export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpe
         
         let bodyWidth = document.body.offsetWidth
 
-        calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu.current, setOpenMore)
+        calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu.current, setOpenMore, hooks.setSaveHeight)
 
-       
     }
+
 
     return (
         <div className={styles['box']}>
@@ -109,7 +66,7 @@ export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpe
             <div ref={feedbackMenu} className={styles['feedbackMenu']}>
                 {feedback.filter( (el) => ( filter == "all" || filter == "rate") ? true : el.sort == filter)
                 .sort((a,b)=> ( filter == "rate") ? (b.rate - a.rate): null)
-                .map( (el) => <FeedbackCard 
+                .map( (el) => <FeedbackCard
                         key={el.id} 
                         id={el.id} 
                         sort={el.sort}
@@ -121,8 +78,10 @@ export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpe
                         product={el.product}
                         enter={el.enter}
                         open={el.open}
-                        setFeedbackDetails={setFeedbackDetails}
-                        setOpen={setOpen}
+                        setFeedbackDetails={hooks.setFeedbackDetails}
+                        setOpen={hooks.setOpen}
+                        setSaveScrollFeedback={hooks.setSaveScrollFeedback}
+                        refFeedbackMenu={feedbackMenu}
                     />)
                 }
 
@@ -134,4 +93,103 @@ export default function FeedbackMenu({feedback, filter,setFeedbackDetails,setOpe
         </div>
         
     )
+}
+
+
+// /function/ 
+
+//функция которая вычиляет размер feedbackMenu при нажатии на 'показать еще', чтобы показать еще отзывов
+function calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu, setOpenMore, setSaveHeight){ 
+
+    let heightRows
+    let min
+    let max
+
+    if(bodyWidth <= 1300 && bodyWidth > 900){
+            heightRows = 330
+            min = 660
+            max = Math.ceil(quantityCards/3) * heightRows
+
+    }
+
+    if(bodyWidth <= 900 && bodyWidth > 560){
+
+        heightRows = 250
+        min = 750
+        max = Math.ceil(quantityCards/2) * heightRows
+    }
+
+    if(bodyWidth <= 560){
+
+        heightRows = 230
+        min = 690
+        max = Math.ceil(quantityCards/1) * heightRows
+        
+    }
+
+
+    feedbackMenu.style.height = feedbackMenu.offsetHeight + min + 'px'
+
+    if(feedbackMenu.offsetHeight > max) {
+        feedbackMenu.style.height = max + 'px'
+        setOpenMore(false)
+    }
+
+    if (feedbackMenu.offsetHeight < max){
+        setOpenMore(true)
+    }
+
+    setSaveHeight(parseInt(window.getComputedStyle(feedbackMenu).height))
+}
+
+
+function changeStandartHeightFeedbackMenu(bodyWidth, feedbackMenu, setOpenMore, setSaveHeight){
+
+
+    setSaveHeight(null)
+
+     if (bodyWidth > 1300) {
+        setOpenMore(false)
+        feedbackMenu.style.height = 660 + 'px'// когда экран больше 1300 px то меню отзывов overflow = hidden, поэтому возвращаем до стандартных размеров height
+    }
+
+    if (bodyWidth <= 1300 ) {
+        document.body.style.overflow = 'visible'
+        setOpenMore(true)
+        feedbackMenu.style.height = 660 + 'px'
+    }
+
+    if (bodyWidth <= 900){
+        feedbackMenu.style.height = 750 + 'px'
+    }
+
+    if (bodyWidth <= 560){
+        feedbackMenu.style.height = 690 + 'px'
+    }
+
+
+} 
+
+//удаляет рамзер скролла для чтобы feddbackMenu был показан сначала
+function deleteSaveScrollFeedback(setSaveScrollFeedback){
+    setSaveScrollFeedback(null)
+}
+
+//показывает пользователю отзыв позле закрытия более подробной информации этого же отзыва(вычисляет какой размер скролла нужен)
+function changeResizeScrollFeedback(feedbackMenu,saveScrollFeedback){
+    if(document.body.offsetWidth > 1300) feedbackMenu.scrollTop = saveScrollFeedback
+    if(document.body.offsetWidth <= 1300) {
+        console.log(saveScrollFeedback)
+
+        if(saveScrollFeedback !== null) { // здесь используется setTimeout так как при рендере страница польностью не загружается, поэтому проккрутку нужно вызвать когда все элементы загрузились
+            window.scrollTo({
+                top: saveScrollFeedback,
+                left: 0,
+                behavior: "smooth"
+            })
+           
+            console.log('res')
+        }
+        // window.scrollTo(saveScrollFeedback,0)
+    }
 }
