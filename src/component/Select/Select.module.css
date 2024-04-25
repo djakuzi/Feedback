@@ -14,12 +14,13 @@ ul {
 
 
 .select__button {
+    padding-right: 10px;
     display: flex;
     text-transform: uppercase;
     border: none;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
+    font-size: 15px;
     width: 100%;
     height: 50px;
     color: rgb(34, 34, 34);
@@ -34,7 +35,7 @@ ul {
     content: url(../../../public/select.svg);
     position: absolute;
     transform: rotate(90deg);
-    translate: 85px;
+    translate: 87px;
     transition: all .5s ease;
    
 }

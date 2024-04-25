@@ -51,7 +51,8 @@ export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFe
             [styles['openUl']]: isValid,
           })}>
                 <li onClick={(e)=> sort(e)} data-sort="all">все отзывы</li>
-                <li onClick={(e)=> sort(e)} data-sort="rate">по рейтингу</li>
+                <li onClick={(e)=> sort(e)} data-sort="rateBig">высокий рейтинг</li>
+                <li onClick={(e)=> sort(e)} data-sort="rateSmall">низкий рейтинг</li>
                 <li onClick={(e)=> sort(e)}  data-sort="site">разработка</li>
                 <li onClick={(e)=> sort(e)}  data-sort="promotion">продвижение</li>
                 <li onClick={(e)=> sort(e)}  data-sort="ad">реклама</li>

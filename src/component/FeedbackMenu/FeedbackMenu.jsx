@@ -64,8 +64,8 @@ export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFee
         <div className={styles['box']}>
 
             <div ref={feedbackMenu} className={styles['feedbackMenu']}>
-                {feedback.filter( (el) => ( filter == "all" || filter == "rate") ? true : el.sort == filter)
-                .sort((a,b)=> ( filter == "rate") ? (b.rate - a.rate): null)
+                {feedback.filter( (el) => ( filter == "all" || filter == "rateBig" || filter == "rateSmall") ? true : el.sort == filter)
+                .sort((a,b)=> ( filter == "rateBig") ? (b.rate - a.rate): (filter == "rateSmall") ? (  a.rate - b.rate) : null)
                 .map( (el) => <FeedbackCard
                         key={el.id} 
                         id={el.id} 
