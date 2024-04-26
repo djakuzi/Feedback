@@ -47,8 +47,6 @@ export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFee
         if(saveHeight == null) changeStandartHeightFeedbackMenu(bodyWidth, feedbackMenu.current, setOpenMore, hooks.setSaveHeight)
     },[filter])
 
-    
-
     const handlerSeeMore = () =>{
 
         let quantityCards = feedbackMenu.current.children.length
@@ -58,7 +56,6 @@ export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFee
         calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu.current, setOpenMore, hooks.setSaveHeight)
 
     }
-
 
     return (
         <div className={styles['box']}>
@@ -84,7 +81,6 @@ export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFee
                         refFeedbackMenu={feedbackMenu}
                     />)
                 }
-
             
             </div>
 
@@ -94,8 +90,6 @@ export default function FeedbackMenu({feedback, filter,saveHeight, saveScrollFee
         
     )
 }
-
-
 // /function/ 
 
 //функция которая вычиляет размер feedbackMenu при нажатии на 'показать еще', чтобы показать еще отзывов
@@ -127,7 +121,6 @@ function calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu, se
         
     }
 
-
     feedbackMenu.style.height = feedbackMenu.offsetHeight + min + 'px'
 
     if(feedbackMenu.offsetHeight > max) {
@@ -141,7 +134,6 @@ function calculatorHeightFeedbackMenu(bodyWidth, quantityCards, feedbackMenu, se
 
     setSaveHeight(parseInt(window.getComputedStyle(feedbackMenu).height))
 }
-
 
 function changeStandartHeightFeedbackMenu(bodyWidth, feedbackMenu, setOpenMore, setSaveHeight){
 

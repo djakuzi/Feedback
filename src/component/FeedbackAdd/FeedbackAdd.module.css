@@ -1,0 +1,284 @@
+.feedbackAdd{
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* top: 0; */
+    left: 0;
+    background-color: rgba(55, 55, 55, 0.752);
+
+}
+
+
+.feedbackAdd_box{
+    overflow: scroll;
+    position: relative;
+    max-width: 1050px;
+    max-height: 720px;
+    padding: 60px 30px;
+    border: 20px solid rgb(255, 207, 85);
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(148, 12, 12); */
+}
+
+.form{
+    /* width: 100%; */
+}
+
+.form_close {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: calc(100% - 40px);
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("../../../public/img/close.png");
+    /* background-color: antiquewhite; */
+    transition: all .2s ease;
+}
+
+.close {
+    display: none;
+}
+
+.txt{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+
+.form__inner-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-radio {
+    display: flex;
+    /* background: none; */
+}
+
+.custom_input {
+    position: absolute;
+    opacity: .1;
+    z-index: -1;
+    width: 16px;
+    height: 16px;
+}
+
+
+.custom_input+label {
+    position: relative;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+.custom_input+label::before {
+    cursor: pointer;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #a1a1a1;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.custom_input:checked+label::before {
+    border: 2px solid red;
+}
+
+.custom_input:checked+label::after {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    cursor: pointer;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.form__enter{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 30px;
+}
+
+.form_enter-input{
+    outline: none;
+    padding: 20px;
+    height: 50px;
+    border: 1px solid rgb(191, 191, 191);
+}
+
+.form_enter-input::placeholder{
+    font-size: 16px;
+}
+
+.workDone-box{
+    margin-bottom: 15px;
+}
+
+.workDone-box input{
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    /* border-radius: 50px; */
+    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid;
+}
+
+.support-box{
+    display: flex;
+}
+
+.proffesional-box{
+    display: flex;
+}
+
+.result-box{
+    display: flex;
+}
+
+.box_rate-grow{
+    cursor: pointer;
+    margin-left: 15px;
+    display: flex;
+    gap: 5px;
+}
+
+.rate-grow1{
+    width: 15px;
+    height: 15px;
+    background: url(../../../public/img/rateGrow.png)
+
+}
+
+.rate-grow2 {
+    width: 15px;
+    height: 15px;
+    background: url(../../../public/img/rateGrow.png)
+}
+
+.rate-grow3 {
+    width: 15px;
+    height: 15px;
+    background: url(../../../public/img/rateGrow.png)
+}
+
+.rate-grow-open{
+    background: url(../../../public/img/rate.png)
+}
+
+.support-box{
+    margin-bottom: 10px;
+}
+
+.proffesional-box{
+    margin-bottom: 10px;
+}
+
+.result-box{
+    margin-bottom: 20px;
+}
+
+.plus-box input{
+    margin-left: 5px;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid;
+}
+
+.minus-box input{
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    /* border-radius: 50px; */
+    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid;
+}
+
+.mnenie{
+    outline: none;
+    width: 100%;
+    padding: 20px;
+    height: 150px;
+    border: 1px solid rgb(191, 191, 191);
+}
+
+.mnenie::placeholder{
+    font-size: 14px;
+}
+
+.recomendation{
+    outline: none;
+    width: 100%;
+    padding: 20px;
+    height: 70px;
+    border: 1px solid rgb(191, 191, 191);
+    margin-bottom: 20px;
+}
+
+.recomendation::placeholder{
+    font-size: 14px;
+}
+
+.form__submit-txt {
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.form__submit-txt a {
+    color: rgb(255, 72, 72);
+}
+
+.form__submit-button {
+    cursor: pointer;
+    min-width: 170px;
+    height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(255, 65, 65);
+    transition: all .2s ease;
+}
+
+.form__submit-button:hover {
+    background-color: rgb(224, 54, 54);
+}
+
+
+@media(max-width: 700px) {
+
+    .form__enter {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .form__submit-txt{
+        font-size: 16px;
+    }
+}

@@ -3,6 +3,10 @@ import cn from 'classnames'
 import {useRef, useState} from 'react'
 
 
+
+
+
+
 export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFeedback}){
 
     const [isValid, setIsValid] = useState(false) // open or cancel CUSTOM SELECT
@@ -43,6 +47,7 @@ export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFe
 
     return(
         <div ref={select}   className={styles["select"]}>
+
             <div ref={but}  onClick={(e)=>goBut(e)} className={cn(styles['select__button'], {
             [styles['openButton']]: isValid,
           })}>{valueSelect}</div>
@@ -50,6 +55,7 @@ export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFe
             <ul style={ isValid ? coordSelect : {}} className={cn(styles['select__ul'], {
             [styles['openUl']]: isValid,
           })}>
+
                 <li onClick={(e)=> sort(e)} data-sort="all">все отзывы</li>
                 <li onClick={(e)=> sort(e)} data-sort="rateBig">высокий рейтинг</li>
                 <li onClick={(e)=> sort(e)} data-sort="rateSmall">низкий рейтинг</li>
@@ -58,6 +64,7 @@ export default function Select({setFilter,setOpen,setSaveHeight, setSaveScrollFe
                 <li onClick={(e)=> sort(e)}  data-sort="ad">реклама</li>
                 <li onClick={(e)=> sort(e)}  data-sort="help">поддержка</li>
                 <li onClick={(e)=> sort(e)}  data-sort="market">маркетплейсы</li>
+
             </ul>
         </div>
     )

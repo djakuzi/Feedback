@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import styles from "./FeedbackDetails.module.css"
 import rateIMG from "../../../public/img/rate.png"
 
-
 const TYPES_OF_SERVICES = {
     site: "РАЗРАБОТКУ САЙТА",
     ad: "РЕКЛАМУ",
@@ -16,8 +15,6 @@ export default function FeedbackDetails({sort, data, name, link, enter, open, se
     const [txtLink, setTxtLink] = useState()
     // const refFeedbackDetails = useRef()
 
-    
-
     useEffect( () => {
         document.body.style.overflow = 'visible' // потому что когда мы переходим с карточки на подробную информацию, то при нахождении курсора на feedbackMEnu свыше 1300 px страница не прокручивается! Поэтому мы рендрениге мы обновляем overflow 
 
@@ -30,28 +27,22 @@ export default function FeedbackDetails({sort, data, name, link, enter, open, se
         let txt = ''
 
         for(let i = 0; i <= link.length - 1; i++){
-
             if (link[i] == '/' && count <= 2){
                 count += 1
                 if( count == 2){
                     continue
                 }
             }
-
             if(count >= 2){
                 txt += link[i]
             }
-
         }
-
         setTxtLink(txt)
     }
 
     function handleFormApplications(){
         setFormApplications(true)
     }
-
-    
 
     return (
 
@@ -89,9 +80,7 @@ export default function FeedbackDetails({sort, data, name, link, enter, open, se
             <div className={styles["recommendations"]}> 
                 <span>Рекомендации от клиента</span>
                  {open.recommendations}.
-                 {/* {open.recommendations[0]?.toUpperCase() + open.recommendations.slice(1)} */}
              </div>
-             
 
         </div>
     )

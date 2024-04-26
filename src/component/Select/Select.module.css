@@ -57,6 +57,7 @@ ul {
     width: 100%;
     border-radius: 50px;
     overflow: hidden;
+    /* height: auto; */
     backdrop-filter: blur(5px);
     background-color: rgb(242, 241, 241);
     border-radius: 10px;
@@ -79,7 +80,7 @@ ul {
     }
 
     to {
-        height: 300px;
+        height: 340px;
     }
 }
 

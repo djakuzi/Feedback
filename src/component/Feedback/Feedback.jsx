@@ -6,6 +6,7 @@ import { PREFIX } from "../../helper/APi"
 import data from '../../data/data'
 import FeedbackDetails from "../FeedbackDetails/FeedbackDetails"
 import FormApplications from "../FormApplications/FormApplications"
+import FeedbackAdd from "../FeedbackAdd/FeedbackAdd"
 
 
 export default function Feedback(){
@@ -15,6 +16,7 @@ export default function Feedback(){
     const [feedback, setFeedback] = useState([]) 
     const [feedbackDetails, setFeedbackDetails] = useState(0) //данные для открытия более подробного отзыва
     const [formApplications, setFormApplications] = useState(false) // открыть форму обратной связи для заказа услуги
+    const [formAddFeedback, setFormAddFeedback] = useState(false) // открыть форму отправки нового отзыва
     const [saveHeight, setSaveHeight] = useState(null)
     const [saveScrollFeedback, setSaveScrollFeedback] = useState(null) // сохраняет размер скрола когда через карточку отзыва открывается более подробная инфа о отзыве6 чтобы при закрывание этой подробной инфорации пользователь возрващался к тому отзыву, на который нажимал автоматически
 
@@ -65,7 +67,7 @@ export default function Feedback(){
                    <Select setOpen={setOpen} setFilter={setFilter} setSaveHeight={setSaveHeight} setSaveScrollFeedback={setSaveScrollFeedback} />
 
                 <div>
-                    <button className={styles['button']}>Оставить отзыв</button>
+                    <button className={styles['button']} onClick={() => setFormAddFeedback(true)}>Оставить отзыв</button>
                     <button className={styles['button']}>Написать директору</button>
                 </div>
               
@@ -75,6 +77,7 @@ export default function Feedback(){
                 { !open && <FeedbackMenu feedback={feedback} filter={filter} setFeedbackDetails={setFeedbackDetails} saveHeight={saveHeight} saveScrollFeedback={saveScrollFeedback} hooks={hooks} /> }
                 { open && <FeedbackDetails {...feedbackDetails} setOpen={setOpen} setFormApplications={setFormApplications}/>}
                 { formApplications && <FormApplications sort={feedbackDetails.sort} setFormApplications={setFormApplications}/>}
+                { formAddFeedback && <FeedbackAdd setFormAddFeedback={setFormAddFeedback}/>}
             </div>
 
         </div>

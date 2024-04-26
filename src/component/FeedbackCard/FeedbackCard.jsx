@@ -16,39 +16,28 @@ export default function FeedbackCard(props){
         // triggerOnce: true, 
     })
  
-    useEffect( ()=>{
-
-        changeTxt(props.link) //
-
-    }, [])
+    useEffect( ()=> {changeTxt(props.link) }, [])
 
     //убирает http// or https// в ссылке на сайт, чтобы сделать более красивый текст ссылки
     function changeTxt(link){
         let count = 0
         let txt = ''
-
         for(let i = 0; i <= link.length - 1; i++){
-
             if (link[i] == '/' && count <= 2){
                 count += 1
                 if( count == 2){
                     continue
                 }
             }
-
             if(count >= 2){
                 txt += link[i]
             }
-
         }
-
         setTxtLink(txt)
     }
 
     const handleClick = (e) =>{
-
         if(e.target.tagName != 'A'){
-            
             props.setFeedbackDetails(details) // change
             props.setOpen(true) // change 
 
@@ -56,7 +45,6 @@ export default function FeedbackCard(props){
         }
         
     }
-
 
     return(
         <div ref={ref}  onClick={(e)=> handleClick(e)} className={cn(styles["feedbackCard"], {
@@ -81,9 +69,6 @@ export default function FeedbackCard(props){
         </div>
     )
 }
-
-
-
 function  calculatorSaveScrollFeedback(e,setSaveScrollFeedback,refFeedbackMenu) {
     if(document.body.offsetWidth > 1300) setSaveScrollFeedback(refFeedbackMenu.scrollTop)
     if(document.body.offsetWidth <= 1300) {
