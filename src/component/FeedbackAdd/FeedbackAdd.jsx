@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import styles from "./FeedbackAdd.module.css"
 import cn from 'classnames'
 
-
 export default function FeedbackAdd({setFormAddFeedback}){
 
     const[formSend, setFormSend] = useState(false) // отпарвлен отзыв или нет
@@ -13,9 +12,9 @@ export default function FeedbackAdd({setFormAddFeedback}){
     const refMarket = useRef()
     const refHelp = useRef()
 
-    useEffect( () => {
-        document.body.style.overflow = 'hidden'
-    }, [])
+    const arrChoiceRef = [refSite,refAd, refPromotion, refMarket, refHelp] //массив с рефами, чтобы перебрать потом его через цикл, а не писать if else if, когда идет событие change
+
+    useEffect( () => {document.body.style.overflow = 'hidden'}, [])
 
     const handleChoice = (e) =>{
 
@@ -25,35 +24,27 @@ export default function FeedbackAdd({setFormAddFeedback}){
         e.target.checked = true
     }
 
-
-    const arrChoiceRef = [refSite,refAd, refPromotion, refMarket, refHelp] //массив с рефами, чтобы перебрать потом его через цикл, а не писать if else if, когда идет событие change
-
+    
     const handler = () => {
         setFormAddFeedback(false)
         document.body.style.overflow = 'visible'
     }
 
     const takeRate = (e) =>{
-
         const index = e.target.dataset.index
         const csName = e.target.classList[0]
         const num = +e.target.dataset.number
         const rate = document.querySelectorAll('.' + styles['box_rate-grow'])[num]
-        console.log(csName)
         
         if(index){
-
             const arrRate = rate.querySelectorAll('.' + csName)
             
             for(let i = 0; i <= 4; i++){
-
                 if(i <= index) arrRate[i].classList.add(styles['rate-grow-open'])
                 if(i > index) arrRate[i].classList.remove(styles['rate-grow-open'])
                
             }
-
         }
-
      
     }
 
